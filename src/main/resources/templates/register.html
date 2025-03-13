@@ -23,7 +23,7 @@
                     <a class="nav-link" th:href="@{/home}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/login}">Login</a>
+                    <a class="nav-link" th:href="@{/signin}">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/products}">Product</a>
@@ -40,24 +40,24 @@
     <div th:if="${error}" style="color:red" th:text="${error}"></div>
     <form th:action="@{/register}" th:object="${user}" method="post">
         <div class="mb-3">
-            <label class="form-label">Username:</label>
+            <label class="input-group">Username:</label>
             <input type="text" th:field="*{username}" required />
         </div>
         <div class="mb-3">
-            <label class="form-label">Password:</label>
+            <label class="input-group">Password:</label>
             <input type="password" th:field="*{password}" required />
         </div>
         <div class="mb-3">
-            <label class="form-label">Email:</label>
+            <label class="input-group">Email:</label>
             <input type="email" th:field="*{email}" required />
         </div>
         <div class="mb-3">
-            <label class="form-label">Phone Number:</label>
+            <label class="input-group">Phone Number:</label>
             <input type="text" th:field="*{phoneNumber}" />
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
-    <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
+    <p>Already have an account? <a th:href="@{/signin}">Login here</a></p>
 </div>
 </body>
 </html>

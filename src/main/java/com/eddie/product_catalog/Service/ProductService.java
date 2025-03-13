@@ -20,7 +20,31 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public List<Product> findByCategory(Long categoryId) {
-        return productRepository.findByCategoryId(categoryId);
+//    public List<Product> findByCategory(Long categoryId) {
+//        return productRepository.findByCategoryId(categoryId);
+//    }
+    public Product getProductById(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+    }
+
+    public Product createProduct(Product product) {
+        return productRepository.save(product);
+    }
+    public Product updateProduct(Long id, Product updatedProduct) {
+        return productRepository.findById(id)
+                .map(product -> {
+                    product.setName(updatedProduct.getName());
+                    product.setDescription(updatedProduct.getDescription());
+                    product.setImageUrl(updatedProduct.getImageUrl());
+                    product.setPrice(updatedProduct.getPrice());
+                    return productRepository.save(product);
+                })
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+    }
+    public void deleteProduct(Long id){
+        productRepository.deleteById(id);
     }
 }
+
+

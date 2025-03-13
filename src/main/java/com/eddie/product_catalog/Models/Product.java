@@ -15,8 +15,8 @@ public class Product {
     private String imageUrl;
     private Double price;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "category_id")//nullable = false)
 
+    private Catalog category;
 }

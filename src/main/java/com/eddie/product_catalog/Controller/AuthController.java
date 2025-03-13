@@ -18,26 +18,26 @@ public class AuthController {
         this.userService = userService;
     }
 
-    // Display the login form
+
     @GetMapping
     public String showLoginForm(Model model) {
         model.addAttribute("user", new User());
-        return "login"; // Thymeleaf template: src/main/resources/templates/login.html
+        return "signin";
     }
 
-    // Process login
+
     @PostMapping
-    public String login(@RequestParam String username,
+    public String signin(@RequestParam String username,
                         @RequestParam String password,
                         HttpSession session,
                         Model model) {
         try {
             User loggedInUser = userService.login(username, password);
             session.setAttribute("user", loggedInUser);
-            return "redirect:/";
+            return "redirect:home";
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
-            return "login";
+            return "signin";
         }
     }
 }
